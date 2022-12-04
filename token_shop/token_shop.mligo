@@ -14,8 +14,10 @@ let main(token_kind_index, token_shop_storage : nat  * token_shop_storage) : ret
         | Some k -> k
         | None -> (failwith "Unknown kind of token" : token_supply)
     in
-    // NOTE : training code sample lacking this 
-    // get amount
+    // NOTE : training code sample need to fix this part :
+    // 
+    // Tezos.get_amount() instead of: Tezos.amount
+    //
     let amount = Tezos.get_amount() in
     // not enough tez sent ? 
     let () = if amount <> token_kind.token_price then

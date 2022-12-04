@@ -77,3 +77,16 @@ I pick CameLigo as my writing style as it seem to be cleanest one but a lot of m
         if y = 0n then x else iter (y, x mod y)
 
     
+- get_contract_opt & transaction :
+
+          // get contract unit from onwer address
+          let receiver : unit contract = 
+          match (Tezos.get_contract_opt address) with
+              | Some(contract) -> contract 
+              | None -> (failwith ("Not a contract") : (unit contract))
+          in
+          let payout_operation : operation = 
+              Tezos.transaction unit amount receiver
+          in
+          let operations : operation list = 
+              [ payout_operation ]

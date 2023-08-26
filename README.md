@@ -79,6 +79,10 @@ I pick CameLigo as my writing style as it seem to be cleanest one but a lot of m
       let rec iter (x, y : nat * nat) : nat =
         if y = 0n then x else iter (y, x mod y)
 
+
+- get source address, which trigger the contract ( tend to be user, this avoid KT address ) :
+
+      Tezos.get_source()
     
 - get_contract_opt & transaction :
 

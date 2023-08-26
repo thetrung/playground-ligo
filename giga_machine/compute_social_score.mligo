@@ -2,18 +2,18 @@
 // This was made & meant to be computed on-chain 
 // for immutable test result record.
 // 
-type storage = (address, int)map
+type storage = (address, int)big_map
 //
 // STORAGE : 
 // write ligo expression on deploy :
 //
-// ( Map.empty : (address, int)map) )
+// ( Big_map.empty : (address, int)big_map) )
 // 
 type answer = nat * nat
 type answer_sheet = answer list
 
 // empty records
-let initial_storage : storage = Map.empty
+let initial_storage : storage = Big_map.empty
 
 let score_table = Map.literal [
   (1n, {yes = 98; no = 0});
@@ -51,7 +51,7 @@ let main (sheet,_ : answer_sheet * storage) : operation list * storage =
   let new_score = compute_social_score sheet in
   // assoc that wallet with new score :
   let current_address = Tezos.get_self_address() in
-  let updated_storage = match Map.find_opt current_address initial_storage with 
-  | Some _ -> Map.update (current_address) (Some(new_score)) initial_storage
-  | None -> Map.add (current_address) (new_score) initial_storage
+  let updated_storage = match Big_map.find_opt current_address initial_storage with 
+  | Some _ -> Big_map.update (current_address) (Some(new_score)) initial_storage
+  | None -> Big_map.add (current_address) (new_score) initial_storage
   in [], updated_storage

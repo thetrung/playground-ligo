@@ -74,6 +74,11 @@ I pick CameLigo as my writing style as it seem to be cleanest one but a lot of m
         | Gray i -> 232 + i
         | Default -> 0
 
+- loop typically :
+
+        let sum (acc,n : int * int) = acc + n
+        List.fold_left sum 0 [1,2] 
+  
 - iter :
 
       let rec iter (x, y : nat * nat) : nat =

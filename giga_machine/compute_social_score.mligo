@@ -50,7 +50,7 @@ let main (sheet,_ : answer_sheet * storage) : operation list * storage =
   // compute new score along new wallet:
   let new_score = compute_social_score sheet in
   // assoc that wallet with new score :
-  let current_address = Tezos.get_self_address() in
+  let current_address = Tezos.get_sender() in
   let updated_storage = match Big_map.find_opt current_address initial_storage with 
   | Some _ -> Big_map.update (current_address) (Some(new_score)) initial_storage
   | None -> Big_map.add (current_address) (new_score) initial_storage

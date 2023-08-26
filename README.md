@@ -84,6 +84,10 @@ I pick CameLigo as my writing style as it seem to be cleanest one but a lot of m
       let rec iter (x, y : nat * nat) : nat =
         if y = 0n then x else iter (y, x mod y)
 
+- big_map vs. map :  
+
+      Big maps are lazily deserialized. This means that only the part of the big map that is accessed or updated is read from disk and the gas costs for accessing and updating a big map don't depend on the size of the big map.Regular maps by contrast are fully deserialized before the beginning of the execution of the contract and the gas costs for MEM, GET, and UPDATE are proportional to the logarithm of the size of the map.
+
 
 - get source address, which trigger the contract ( tend to be user, this avoid KT address ) :
 

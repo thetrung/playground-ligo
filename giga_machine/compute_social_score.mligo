@@ -2,12 +2,12 @@
 // This was made & meant to be computed on-chain 
 // for immutable test result record.
 // 
-type storage = (address, int)big_map
+type storage = (address, int) big_map
 //
 // STORAGE : 
 // write ligo expression on deploy :
 //
-// ( Big_map.empty : (address, int)big_map ) 
+// ( Big_map.empty : (address, int) big_map ) 
 // 
 type answer = nat * nat
 type answer_sheet = answer list

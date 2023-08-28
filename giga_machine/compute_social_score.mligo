@@ -31,26 +31,38 @@ let score_table = Map.literal [
 
 
 let compute_social_score (sheet : answer_sheet ) :  int = 
+  // compute each pair (1n,1n) of question - choice.
   let compute_score (question, choice : nat * nat) : int = 
+    // find the question id to match :
     let record = match Map.find_opt question score_table with
       | Some r -> r
-      | None -> failwith "something wrong"
-    in if choice = 0n then record.yes else record.no
+      | None -> failwith "wrong question id."
+    in if choice < 2n then
+    if choice = 0n then record.yes else record.no
+    else failwith "wrong answer id."
   in
+  // map to all question-choices :
   let mapping = List.map compute_score sheet in
+  // sum them all :
   let score = List.fold_left (fun(acc, n) -> acc + n ) 0 mapping in
   score
+   
+ 
 
-
-// NOTE :
-// It's required to pass current-storage as the last argument there.
-// Else, data will be re-written.
 //
-//* entry * //
+//* entry * 
+// It's required to take/pass current-storage on every update.
+//
 let main (sheet, current_storage : answer_sheet * storage) : operation list * storage = 
+  // validation : don't take more than 10 answers.
+  if List.length sheet > 10n then failwith "duplicated or too long answer sheet."
+  else
   // compute new score along new wallet:
   let new_score = compute_social_score sheet in
+  
   // assoc that wallet with new score :
   let current_address =  Tezos.get_source() in
+
+  //update current storage & return :
   let updated_storage = Big_map.update (current_address) (Some(new_score)) current_storage
   in [], updated_storage

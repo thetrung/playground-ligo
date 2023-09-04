@@ -1,8 +1,8 @@
 # playground-ligo
 A collection of Tezos Ligo smart contract to play around beside [LIGO IDE](https://ide.ligolang.org/).
 
-### NOTE 23.12.2022
-Because I no longer want to involve into Tezos and (this) Ligo so I archive this repo now. Cheers.
+### NOTE August, 2023 
+As I want to help some projects on Tezos, I still come back to the ecosystem to learn more and improve my understanding. As I get it, my progression is faster now.
 
 ### 1. Why playground ?
 Because learning a new language ( Ocaml ) and a smart contract rule at the same time could be messy pretty much, especially on Tezos with Ligo, by 4 different styles that I can find on tutorials. But once I get used to it, I figured out that it has a flow of ML family like what I experienced on F# and OCaml, but much worse editor support.
